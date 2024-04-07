@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { AntDesign } from '@expo/vector-icons'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
@@ -26,22 +26,22 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcomeMessage}>Welcome to Bakery App</Text>
-      <Pressable style={styles.createAccountButton}>
-        <Text style={styles.createAccountButtonText}>Create Account</Text>
-      </Pressable>
-      <Text>Or</Text>
-      <Pressable style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>Login</Text>
-      </Pressable>
-      <Pressable style={styles.googleSignInButton}>
-        <AntDesign name="google" size={24} color="white" />
-        <Text style={styles.googleSignInButtonText}>Sign in with google</Text>
-      </Pressable>
-      <Text style={styles.noAccountText}>Don't have an account?</Text>
-      <Pressable>
-        <Text style={styles.smallCreateAccountButton}>Create account</Text>
-      </Pressable>
+        <Text style={styles.welcomeMessage}>Welcome to Bakery App</Text>
+        <Pressable onPress={() => router.navigate("/createAccount")} style={styles.createAccountButton}>
+          <Text style={styles.createAccountButtonText}>Create Account</Text>
+        </Pressable>
+        <Text>Or</Text>
+        <Pressable onPress={() => router.navigate("/login")} style={styles.loginButton}>
+          <Text style={styles.loginButtonText}>Login</Text>
+        </Pressable>
+        <Pressable style={styles.googleSignInButton}>
+          <AntDesign name="google" size={24} color="white" />
+          <Text style={styles.googleSignInButtonText}>Sign in with google</Text>
+        </Pressable>
+        <Text style={styles.noAccountText}>Don't have an account?</Text>
+        <Pressable>
+          <Text style={styles.smallCreateAccountButton}>Create account</Text>
+        </Pressable>
     </View>
   );
 }
@@ -51,10 +51,9 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#fff',
     alignItems: 'center',
+    justifyContent: 'center'
   },
   welcomeMessage: {
-    marginTop: 170,
-    fontFamily:'Inter',
     fontWeight: '700',
     fontSize: 30
   },
@@ -111,5 +110,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16
   },
-
 });
